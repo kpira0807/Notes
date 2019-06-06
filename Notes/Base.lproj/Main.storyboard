@@ -79,7 +79,7 @@
                                     <outlet property="informationLabel" destination="Qhp-7m-6TY" id="D8w-C1-uTw"/>
                                     <outlet property="timeLabel" destination="xYh-Mo-dcF" id="dOv-7y-G6n"/>
                                     <segue destination="hEM-M4-aiL" kind="show" identifier="goDetail" id="E3Z-OO-AI4"/>
-                                    <segue destination="tOf-Qi-jX0" kind="show" identifier="editNotes" trigger="accessoryAction" id="cDf-pq-jju"/>
+                                    <segue destination="tOf-Qi-jX0" kind="presentation" identifier="editNotes" trigger="accessoryAction" id="cDf-pq-jju"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -203,13 +203,28 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heh-eX-E4S">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem id="q7d-SP-eb8">
+                                        <barButtonItem key="rightBarButtonItem" title="Изменить" id="3tz-pY-rDV">
+                                            <connections>
+                                                <action selector="editButton:" destination="tOf-Qi-jX0" id="2ah-5F-0Sv"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="heh-eX-E4S" firstAttribute="trailing" secondItem="iea-xY-jmR" secondAttribute="trailing" id="OFc-Bb-Irm"/>
                             <constraint firstItem="iea-xY-jmR" firstAttribute="bottom" secondItem="dHR-bl-VTS" secondAttribute="bottom" id="PED-cL-R8F"/>
-                            <constraint firstItem="dHR-bl-VTS" firstAttribute="top" secondItem="iea-xY-jmR" secondAttribute="top" constant="5" id="S2w-Wc-GlA"/>
+                            <constraint firstItem="dHR-bl-VTS" firstAttribute="top" secondItem="heh-eX-E4S" secondAttribute="bottom" constant="5" id="S2w-Wc-GlA"/>
+                            <constraint firstItem="heh-eX-E4S" firstAttribute="leading" secondItem="iea-xY-jmR" secondAttribute="leading" id="XAJ-8r-VhH"/>
                             <constraint firstItem="iea-xY-jmR" firstAttribute="trailing" secondItem="dHR-bl-VTS" secondAttribute="trailing" constant="10" id="ZDI-fG-4KT"/>
                             <constraint firstItem="dHR-bl-VTS" firstAttribute="leading" secondItem="iea-xY-jmR" secondAttribute="leading" constant="10" id="ZPc-Ns-iKL"/>
+                            <constraint firstItem="heh-eX-E4S" firstAttribute="top" secondItem="iea-xY-jmR" secondAttribute="top" id="sPV-wJ-sXc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iea-xY-jmR"/>
                     </view>
@@ -222,12 +237,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="navigationBar" destination="heh-eX-E4S" id="zep-Xb-1zc"/>
                         <outlet property="textNotes" destination="dHR-bl-VTS" id="EW4-lK-wHg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfU-bK-3dv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2703" y="323"/>
+            <point key="canvasLocation" x="2702.898550724638" y="322.76785714285711"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

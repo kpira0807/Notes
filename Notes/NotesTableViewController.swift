@@ -28,6 +28,9 @@ class NotesTableViewController: UITableViewController, NoteDelegate, UIActionShe
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         self.definesPresentationContext = true
+        
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     func searchBarIsEmpty() -> Bool {
@@ -85,7 +88,7 @@ class NotesTableViewController: UITableViewController, NoteDelegate, UIActionShe
             guard let indexPath = sender as? Int else { return }
             let note = notes[indexPath]
             
-            if let editNotes:  EditViewController = segue.destination as? EditViewController {
+            if let editNotes:  EditViewController  = segue.destination as? EditViewController {
                 editNotes.editNotes = note
                 editNotes.delegate = self
                 tableView.reloadData()
@@ -104,6 +107,7 @@ class NotesTableViewController: UITableViewController, NoteDelegate, UIActionShe
         notes.append(editNotesNew)
         print(editNotesNew)
         self.tableView.reloadData()
+      
     }
     
     // удалить и редактировать нотатку
@@ -114,6 +118,8 @@ class NotesTableViewController: UITableViewController, NoteDelegate, UIActionShe
             self.updateAction(note: note , indexPath: indexPath)
             
             self.performSegue(withIdentifier: "editNotes", sender: indexPath.row)
+            self.notes.remove(at: indexPath.row)
+            self.tableView?.deleteRows(at: [indexPath], with: .automatic)
         }
         let deleteAction = UITableViewRowAction(style: .default, title: "Удалить") { (action, indexPath) in
             self.deleteAction(note: note , indexPath: indexPath)
@@ -125,7 +131,7 @@ class NotesTableViewController: UITableViewController, NoteDelegate, UIActionShe
     
     // кнопка для обновления
     private func updateAction(note:Notes, indexPath: IndexPath) {
-        
+
     }
     
     // кнопка для удаления
@@ -220,8 +226,8 @@ class EditViewController: UIViewController {
     weak var delegate: EditDelegate? = nil
     
     @IBOutlet weak var textNotes: UITextView!
+   
     @IBAction func editButton(_ sender: Any) {
-        
         let newTimeData = DateFormatter()
         newTimeData.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let myString = newTimeData.string(from: Date())
@@ -239,8 +245,11 @@ class EditViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBOutlet var navigationBar: UINavigationBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         textNotes.text = editNotes?.notes
+       
     }
 }
